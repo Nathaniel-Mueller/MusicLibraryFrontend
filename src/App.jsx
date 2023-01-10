@@ -31,10 +31,12 @@ function App() {
   }
 
   async function findSong(song){
-    const foundSong = songs.filter(function (songInDatabase){
+
+    const response = await axios.get(`http://127.0.0.1:8000/api/music/`)
+    const songsFound = response.data.filter(function (songInDatabase){
       if (song.title === songInDatabase.title)
         return true;
-      else if (song.artist === songInDatabase.artist)
+        else if (song.artist === songInDatabase.artist)
         return true;
       else if (song.album === songInDatabase.album)
         return true;
@@ -42,10 +44,10 @@ function App() {
         return true;
       else if (song.genre === songInDatabase.genre)
         return true;
+      else console.log(`${songInDatabase.title} is not in the results`)
     })
-    const response = await axios.get(`http://127.0.0.1:8000/api/music/`, foundSong)
-    setSongs(response.data)
-    console.log(foundSong)
+    setSongs(songsFound)
+    console.log(songsFound)
   }
 
   return (
