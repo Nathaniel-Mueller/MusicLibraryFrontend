@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import MusicTable from './Components/MusicTable/MusicTable';
+import CreateSong from './Components/CreateSong/CreateSong';
+import SearchBar from './Components/SearchBar/SearchBar';
 import axios from 'axios';
 
 function App() {
@@ -9,22 +12,47 @@ function App() {
     getSongs()
   }, []);
 
+  async function addNewSong (song) {
+    let tempSong = [...songs, song]
+    setSongs(tempSong)
+    await axios.post('http://127.0.0.1:8000/api/music/', {
+      title: song.title,
+      artist: song.artist,
+      album: song.album,
+      release_date: song.release_date,
+      genre: song.genre,
+    })
+  }
+
   async function getSongs(){
     const response = await axios.get('http://127.0.0.1:8000/api/music/')
     console.log(response.data)
     setSongs(response.data)
   }
 
-  async function findSong(){
-    const response = await axios.get('http://127.0.0.1:8000/api/music/3/')
+  async function findSong(song){
+    const foundSong = songs.filter(function (songInDatabase){
+      if (song.title === songInDatabase.title)
+        return true;
+      else if (song.artist === songInDatabase.artist)
+        return true;
+      else if (song.album === songInDatabase.album)
+        return true;
+      else if (song.release_date === songInDatabase.release_date)
+        return true;
+      else if (song.genre === songInDatabase.genre)
+        return true;
+    })
+    const response = await axios.get(`http://127.0.0.1:8000/api/music/`, foundSong)
     setSongs(response.data)
-    console.log(response.data)
+    console.log(foundSong)
   }
 
   return (
     <div>
-      <button onClick={() => getSongs()}>Get all Songs</button>
-      <button onClick={()=> findSong()}>test</button>
+      <SearchBar findSong = {findSong} />
+      <MusicTable allSongs = {songs} />
+      <CreateSong addNewSong = {addNewSong} />
     </div>
   );
 }
