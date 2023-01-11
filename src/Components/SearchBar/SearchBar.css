@@ -1,0 +1,14 @@
+.spacing{
+    margin-left: 1em;
+}
+
+.in-line{
+    scale: 95%;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+p {
+    font-weight: bold;
+}
+

@@ -1,0 +1,15 @@
+.this-div{
+    display: flex;
+    align-items: center;
+}
+
+.center{
+    display: flex;
+    align-items: center;
+}
+.this {
+    background-color: red;
+    width: 150%;
+    display: flex;
+
+}

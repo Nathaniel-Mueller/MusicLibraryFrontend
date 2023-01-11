@@ -1,14 +1,16 @@
+import './MusicTable.css'
+
 const MusicTable = (props) => {
     return ( 
         <div>
-            <table>
+            <table className='table'>
                 <thead>
                     <tr>
-                        <th>Song Title</th>
-                        <th>Artist</th>
-                        <th>Album</th>
-                        <th>Release Date</th>
-                        <th>Genre</th>
+                        <th scope='col'>Song Title</th>
+                        <th scope='col'>Artist</th>
+                        <th scope='col'>Album</th>
+                        <th scope='col'>Release Date</th>
+                        <th scope='col'>Genre</th>
                     </tr>
                 </thead>
             {props.allSongs.map((song) => {

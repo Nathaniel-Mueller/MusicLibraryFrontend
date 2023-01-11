@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './CreateSong.css'
 
 const CreateSong = (props) => {
 
@@ -21,21 +22,14 @@ const CreateSong = (props) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>Title: </label>
-                <input type='text' value={title} placeholder='Title' onChange = {(event) => setTitle(event.target.value)}/>
-                <label>Artist: </label>
-                <input type='text' value={artist} placeholder = 'Artist' onChange = {(event) => setArtist(event.target.value)}/>
-                <label>Album: </label>
-                <input type='text' value={album} placeholder = 'Album' onChange = {(event) => setAlbum(event.target.value)}/>
-                <label>Release Date: </label>
-                <input type='text' value={releaseDate} placeholder='YYYY-MM-DD' onChange = {(event) => setReleaseDate(event.target.value)}/>
-                <label>Genre: </label>
-                <input type='text' value={genre} placeholder = 'Genre' onChange = {(event) => setGenre(event.target.value)}/>
-                <button type='submit'>Create Song</button>
-            </div>
-                
+        <form className='in-line' onSubmit={handleSubmit}>
+                <p>Add a song: </p>
+                <input className='spacing' type='text' value={title} placeholder='Title' onChange = {(event) => setTitle(event.target.value)}/>
+                <input className='spacing' type='text' value={artist} placeholder = 'Artist' onChange = {(event) => setArtist(event.target.value)}/>
+                <input className='spacing' type='text' value={album} placeholder = 'Album' onChange = {(event) => setAlbum(event.target.value)}/>
+                <input className='spacing' type='text' value={releaseDate} placeholder='Release Date (YYYY-MM-DD)' onChange = {(event) => setReleaseDate(event.target.value)}/>
+                <input className='spacing' type='text' value={genre} placeholder = 'Genre' onChange = {(event) => setGenre(event.target.value)}/>
+                <button className='spacing' type='submit'>Create Song</button>      
         </form>
      );
 }

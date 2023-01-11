@@ -3,6 +3,7 @@ import MusicTable from './Components/MusicTable/MusicTable';
 import CreateSong from './Components/CreateSong/CreateSong';
 import SearchBar from './Components/SearchBar/SearchBar';
 import axios from 'axios';
+import './App.css'
 
 function App() {
 
@@ -51,10 +52,11 @@ function App() {
   }
 
   return (
-    <div>
+    <div className='this-div'>
+      <div>
       <SearchBar findSong = {findSong} />
       <MusicTable allSongs = {songs} />
-      <CreateSong addNewSong = {addNewSong} />
+      <CreateSong addNewSong = {addNewSong} /></div>
     </div>
   );
 }
